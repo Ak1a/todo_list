@@ -1,14 +1,6 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
+import React from 'react';
+import {render} from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+import Main from './Main';
 
-class User extends Component{
-render(){
-        return (
-            <div>
-                <h1>Hellow world</h1>
-            </div>
-            )
-    }
-}
-
-render(<User/>, document.getElementById('root'))
+render(<Main/>, document.getElementById('root'))
