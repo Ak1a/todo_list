@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {render} from 'react-dom'
 
-function HelloWorld (){
-    return (
-        <div>
-            <h1>Hellow world</h1>
-        </div>
-        )
+class User extends Component{
+render(){
+        return (
+            <div>
+                <h1>Hellow world</h1>
+            </div>
+            )
+    }
 }
 
-render('<HelloWorld/>', document.getElementById('root'))
+render(<User/>, document.getElementById('root'))
