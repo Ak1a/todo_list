@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
-import usersList from '../usersLisr';
 import User from '../User'
 
 export default class Users extends Component {
     
     state = {
-        chooseUserID: null
+        chooseUserID: null,
     }
 
     render (){
-        const userEl = usersList.map(user => 
-            <li className={(this.state.chooseUserID === user.id) ? "list-group-item active" : "list-group-item"} key={user.id}  ><User user={user} chooseUser={this.chooseUser.bind(this, user.id)} /></li>
+        const userEl = this.props.listOfUser.map((user, index) => 
+            <li className={(this.state.chooseUserID === index) ? "list-group-item active" : "list-group-item"} key={index}  ><User user={user} chooseUser={this.chooseUser.bind(this, index)} /></li>
         )
 
         return (
@@ -20,7 +19,10 @@ export default class Users extends Component {
         )
     }
 
-    chooseUser = chooseUserID => this.setState({
-        chooseUserID: this.state.chooseUserID === chooseUserID ? null : chooseUserID
-    })
+    chooseUser = chooseUserIDargs => {
+        this.setState({
+            chooseUserID: this.state.chooseUserID === chooseUserIDargs ? null : chooseUserIDargs
+        });
+        this.props.chooseUserIDMain(chooseUserIDargs);
+    }
 }
