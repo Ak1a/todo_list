@@ -31,16 +31,19 @@ export default class Main extends Component {
 
         let arr = this.state.arrListOfUser.slice();
 
-        if (index !== null) {
+        if (index !== null && data) {
             arr[index] = data;
-            } else {
+        } else {
+            if (data) {
                 arr.push(data);
+            } else {
+                arr.splice(index, 1);
             }
+        }
 
-            console.log(arr);
-            this.setState({
-                arrListOfUser:arr.slice()
-            })
+        this.setState({
+            arrListOfUser:arr.slice()
+        })
     }
 
 }

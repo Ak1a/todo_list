@@ -10,6 +10,9 @@ export default class Form extends Component {
     }
 
     render () {
+
+        const deleteButton = <button className="btn btn-danger" onClick={this.deleteUser}>Delete</button>;
+
         return(
             <form onSubmit={this.handleSubmit}>
                 <div className="form-group col-8">
@@ -31,7 +34,8 @@ export default class Form extends Component {
                     </label>
                 </div>
                 <div className="form-group col-8">
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">{(this.props.userId !== null) ? 'Update' : 'Create'}</button>
+                    {this.props.userId !== null && deleteButton}
                 </div>
             </form>
         )
@@ -57,23 +61,44 @@ export default class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        
         let index = this.props.userId;
-        let data = {
-            name: this.state.valueOfName,
-            last_name: this.state.valueOfLast,
-            age: this.state.valueOfAge
+
+         if( this.state.valueOfName.trim() !== '' &&
+             this.state.valueOfLast.trim() !== '' &&
+             this.state.valueOfAge !== '' ){
+
+            let data = {
+                name: this.state.valueOfName,
+                last_name: this.state.valueOfLast,
+                age: this.state.valueOfAge
+            }
+
+            this.props.mainSetState(index, data);
+        } else {
+            window.alert('Fields shouldn`t be empty');
         }
-        this.props.mainSetState(index, data);
+    }
+        
+
+    deleteUser = (e) => {
+        e.preventDefault();
+
+        if(window.confirm('Are sure you want to delete user')){
+            let index = this.props.userId;
+
+            this.props.mainSetState(index, false);
+        }        
     }
 
     componentWillReceiveProps = (nextProps) => {
-       let index = nextProps.userId
+       let index = nextProps.userId; 
 
-       if (index !== null){
+       if (index !== null && nextProps.listOfUser[index]){
             this.setState({
-             valueOfName: this.props.listOfUser[index].name,
-             valueOfLast: this.props.listOfUser[index].last_name,
-             valueOfAge: this.props.listOfUser[index].age
+                valueOfName: nextProps.listOfUser[index].name,
+                valueOfLast: nextProps.listOfUser[index].last_name,
+                valueOfAge: nextProps.listOfUser[index].age
              })
         } else {
             this.setState({
