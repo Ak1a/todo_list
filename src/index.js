@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
-import Main from './Main';
+import Redux from './Redux';
 
-render(<Main/>, document.getElementById('root'))
+render(<Redux />, document.getElementById('root'));
