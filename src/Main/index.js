@@ -16,9 +16,6 @@ export default class Main extends Component {
     }
 
     mainSetState = (index,  data) => {
-        
-
-        let arr = this.props.arrListOfUser.slice();
 
         if (index !== null && data) {
             this.props.updateUser(index, data);
