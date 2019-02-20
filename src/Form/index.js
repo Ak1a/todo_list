@@ -9,33 +9,57 @@ export default class Form extends Component {
         idUser: null
     }
 
-    render () {
+    deleteButton = () => {
+        return (
+            <button className="btn btn-danger" onClick={this.deleteUser}>
+                Delete
+            </button>
+        )
+    }
 
-        const deleteButton = <button className="btn btn-danger" onClick={this.deleteUser}>Delete</button>;
+    render () {
 
         return(
             <form onSubmit={this.handleSubmit}>
                 <div className="form-group col-8">
                     <label>
                         First name:
-                        <input type="text" value={this.state.valueOfName} onChange={this.handleChangeName} className="form-control" />
+                        <input
+                            type="text"
+                            value={this.state.valueOfName}
+                            onChange={this.handleChangeName}
+                            className="form-control"
+                        />
                     </label>
                 </div>
                 <div className="form-group col-8">
                     <label>
                         Last name:
-                        <input type="text" value={this.state.valueOfLast} onChange={this.handleChangeLast} className="form-control" />
+                        <input 
+                            type="text"
+                            value={this.state.valueOfLast}
+                            onChange={this.handleChangeLast}
+                            className="form-control"
+                        />
                     </label>
                 </div>
                 <div className="form-group col-8">
                     <label>
                         Age:
-                        <input type="number" value={this.state.valueOfAge} onChange={this.handleChangeAge} className="form-control" />
+                        <input
+                            type="number"
+                            value={this.state.valueOfAge}
+                            onChange={this.handleChangeAge}
+                            className="form-control"
+                        />
                     </label>
                 </div>
                 <div className="form-group col-8">
-                    <button type="submit" className="btn btn-primary">{(this.props.userId !== null) ? 'Update' : 'Create'}</button>
-                    {this.props.userId !== null && deleteButton}
+                    <button 
+                        type="submit"  className="btn btn-primary">
+                        {(this.props.userId !== null) ? 'Update' : 'Create'}
+                    </button>
+                    {this.props.userId !== null && this.deleteButton()}
                 </div>
             </form>
         )
@@ -61,17 +85,22 @@ export default class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        
+        const {
+            valueOfName,
+            valueOfLast,
+            valueOfAge
+        } = this.state;
+
         let index = this.props.userId;
 
-         if( this.state.valueOfName.trim() !== '' &&
-             this.state.valueOfLast.trim() !== '' &&
-             this.state.valueOfAge !== '' ){
+         if( valueOfName.trim() !== '' &&
+             valueOfLast.trim() !== '' &&
+             valueOfAge !== '' ){
 
-            let data = {
-                name: this.state.valueOfName,
-                last_name: this.state.valueOfLast,
-                age: this.state.valueOfAge
+            const data = {
+                name: valueOfName,
+                last_name: valueOfLast,
+                age: valueOfAge
             }
 
             this.props.mainSetState(index, data);
