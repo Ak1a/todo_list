@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import User from '../User'
 
-export default class Users extends Component {
+ class Users extends PureComponent {
     
     state = {
         chooseUserID: null,
@@ -9,7 +9,13 @@ export default class Users extends Component {
 
     render (){
         const userEl = this.props.listOfUser.map((user, index) => 
-            <li className={(this.state.chooseUserID === index) ? "list-group-item active" : "list-group-item"} key={index}  ><User user={user} chooseUser={this.chooseUser.bind(this, index)} /></li>
+            <li 
+                className={(this.state.chooseUserID === index) ? "list-group-item active" : "list-group-item"} 
+                key={user.name + user.last_name} >
+                <User 
+                    user={user} 
+                    chooseUser={this.chooseUser.bind(this, index)} />
+            </li>
         )
 
         return (
@@ -26,3 +32,5 @@ export default class Users extends Component {
         this.props.chooseUserIDMain(chooseUserIDargs);
     }
 }
+
+export default Users;

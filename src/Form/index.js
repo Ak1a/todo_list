@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
-export default class Form extends Component {
+class Form extends PureComponent {
 
     state = {
         valueOfName: '',
@@ -139,3 +139,5 @@ export default class Form extends Component {
         
     }
 }
+
+export default Form;

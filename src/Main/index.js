@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Users from '../Users';
 import Form from '../Form';
 
-export default class Main extends Component {
+class Main extends PureComponent {
    
     state = {
         chooseUserID: null,
@@ -30,7 +30,6 @@ export default class Main extends Component {
     }
 
     render(){ 
-        console.log(this.props);
         return (
             <div className="container">
                   <div className="row">
@@ -53,3 +52,5 @@ export default class Main extends Component {
     }
 
 }
+
+export default Main;
