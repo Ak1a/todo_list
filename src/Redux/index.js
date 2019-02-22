@@ -1,10 +1,11 @@
 import React from 'react';
 import Main from '../Main';
-import  {createStore, bindActionCreators} from 'redux';
+import {createStore, bindActionCreators, combineReducers } from 'redux';
 import usersList from '../usersList';
 import {connect, Provider} from 'react-redux'
 import {addNewUser, updateUser, deleteUser} from './actions';
 import {handleActions} from 'redux-actions';
+import {reducer as formReducer} from 'redux-form'
 
 export const ACTION_ADD_USER = 'ACTION_ADD_USER';
 export const ACTION_UPDATE_USER = 'ACTION_UPDATE_USER';
@@ -37,13 +38,18 @@ const newReducer = handleActions({
 
 }, initialState)
 
-const store = createStore(newReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const rootReducer = combineReducers({
+    form: formReducer,
+    mainReducer: newReducer
+  })
 
-const putStateToProps = (state) => {
-    return { arrListOfUser: state.arrListUser }
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+const mapStateToProps = (state) => {
+    return { arrListOfUser: state.mainReducer.arrListUser }
 }
 
-const saveActionToProps = (dispatch) => {
+const mapDispathcToProps = (dispatch) => {
     return {
         addNewUser: bindActionCreators(addNewUser, dispatch),
         updateUser: bindActionCreators(updateUser, dispatch),
@@ -51,7 +57,7 @@ const saveActionToProps = (dispatch) => {
     }
 }
 
-const WrappedMainComponent = connect(putStateToProps, saveActionToProps)(Main);
+const WrappedMainComponent = connect(mapStateToProps, mapDispathcToProps)(Main);
 
 const Redux = () => {
     
