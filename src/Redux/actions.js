@@ -1,6 +1,7 @@
 import {ACTION_ADD_USER, ACTION_UPDATE_USER, ACTION_DELETE_USER} from './index';
 
 export const addNewUser = userData => {
+    console.log('add');
     return {
         type: ACTION_ADD_USER,
         payload: userData

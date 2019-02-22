@@ -14,38 +14,30 @@ const initialState = {
     arrListUser: usersList.slice()
 };
 
-const reducer = (state = initialState, action) => {
-    let arr = state.arrListUser.slice();
-
-    switch (action.type) {
-         case ACTION_ADD_USER:
-         arr.push(action.payload)
-
-         return { ...state, arrListUser: arr}
-
-         case ACTION_UPDATE_USER:
-         arr[action.payload.index] = action.payload.userData
-
-         return { ...state, arrListUser: arr}
-
-         case ACTION_DELETE_USER:
-         arr.splice(action.payload, 1)
-
-         return { ...state, arrListUser: arr}
-        
-         default: return state;
-    }
-}
-
-
 const newReducer = handleActions({
-    ACTION_ADD_USER: (state, action) => { return { ...state, arrListUser: state.arrListUser.push(action.payload) }},
-    ACTION_UPDATE_USER: (state, action) => ({ ...state, arrListUser: state.arrListUser[action.payload.index] = action.payload.userData }),
-    ACTION_DELETE_USER: (state, action) => ({ ...state, arrListUser: state.arrListUser.splice(action.payload, 1) }),
+    [ACTION_ADD_USER]: (state, {payload}) => { 
+        let arr = state.arrListUser.slice();
+        arr.push(payload);
+
+        return { ...state, arrListUser: arr}
+    },
+
+    [ACTION_UPDATE_USER]: (state, {payload: {userData, index}}) => {
+        let arr = state.arrListUser.slice();
+        arr[index] = userData;
+
+       return { ...state, arrListUser: arr }},
+
+    [ACTION_DELETE_USER]: (state, {payload}) => { 
+        let arr = state.arrListUser.slice();
+        arr.splice(payload, 1);
+
+        return { ...state, arrListUser: arr }
+    },
 
 }, initialState)
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(newReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 const putStateToProps = (state) => {
     return { arrListOfUser: state.arrListUser }
@@ -70,5 +62,7 @@ const Redux = () => {
     )
     
 }
+
+Redux.displayName = 'Redux';
 
 export default Redux;

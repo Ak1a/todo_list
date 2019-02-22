@@ -8,6 +8,7 @@ class Main extends PureComponent {
         chooseUserID: null,
     }
 
+    static displayName = 'Main';
     
     chooseUserIDMain = (chooseUserID) => {
         this.setState({

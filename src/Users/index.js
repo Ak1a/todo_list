@@ -7,6 +7,8 @@ import User from '../User'
         chooseUserID: null,
     }
 
+    static displayName = 'Users';
+    
     render (){
         const userEl = this.props.listOfUser.map((user, index) => 
             <li 

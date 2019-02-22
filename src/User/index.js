@@ -11,4 +11,6 @@ const User = ({user, chooseUser}) => {
     )     
 }
 
+User.displayName = 'User';
+
 export default User;

@@ -9,6 +9,8 @@ class Form extends PureComponent {
         idUser: null
     }
 
+    static displayName = 'Form';
+    
     deleteButton = () => {
         return (
             <button className="btn btn-danger" onClick={this.deleteUser}>
