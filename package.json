@@ -4,13 +4,16 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.0",
+    "classnames": "^2.2.6",
+    "prop-types": "^15.7.2",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-redux": "^6.0.0",
     "react-scripts": "2.1.5",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.4",
-    "redux-form": "^8.1.0"
+    "redux-form": "^8.1.0",
+    "reselect": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -26,5 +29,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.8"
+  }
 }

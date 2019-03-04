@@ -1,6 +1,9 @@
 import React from 'react';
-import {render} from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.css';
-import Redux from './Redux';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-render(<Redux />, document.getElementById('root'));
+import 'bootstrap/dist/css/bootstrap.css';
+
+const ROOT = document.getElementById('root');
+
+ReactDOM.render(<App />, ROOT);

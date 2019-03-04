@@ -1,5 +1,6 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm } from 'redux-form';
+import Input from '../components/common/Input';
 
 let Form = props => {
     const {handleSubmit, userId, users} = props;
@@ -9,36 +10,21 @@ let Form = props => {
     return (
             <form onSubmit={handleSubmit}>
             <div className="form-group col-8">
-                <label>
-                    First name:
-                    <Field 
-                        name="name" 
-                        component="input" 
-                        type="text" 
-                        className="form-control"
-                        value='l'
-                        />
-                </label>
+              <Field
+                name="name"
+                component={Input}
+                label="Test"
+              />
             </div>
             <div className="form-group col-8">
-                <label>
-                    Last name:
-                    <Field 
-                        name="lastName" 
-                        component="input" 
-                        type="text" 
-                        className="form-control"/>
-                </label>
+              <Field
+                name="lastName"
+                component={Input} />
             </div>
             <div className="form-group col-8">
-                <label>
-                    Age:
-                    <Field 
-                        name="age" 
-                        component="input" 
-                        type="number" 
-                        className="form-control"/>
-                </label>
+              <Field
+                name="age"
+                component={Input} />
             </div>
             <div className="form-group col-8">
             <button type="submit" className="btn btn-primary">Submit</button>
